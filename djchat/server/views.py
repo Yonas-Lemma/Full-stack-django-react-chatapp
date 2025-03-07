@@ -1,15 +1,28 @@
 from django.db.models import Count
+from drf_spectacular.utils import extend_schema
 from rest_framework import response, viewsets
 from rest_framework.exceptions import AuthenticationFailed, ValidationError
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from .models import Category, Server
 from .schema import Server_list_docs
-from .serializers import ServerSerializers
+from .serializers import CategorySerializers, ServerSerializers
+
+
+class CategoryListVS(viewsets.ViewSet):
+    queryset = Category.objects.all()
+
+    @extend_schema(responses=CategorySerializers)
+    def list(self, request):
+        serializers = CategorySerializers(self.queryset, many=True)
+        return Response(serializers.data)
 
 
 # ViewSet for managing Server instances
 class ServerListVS(viewsets.ViewSet):
     queryset = Server.objects.all()  # Base queryset for all servers
+    # permission_classes = [IsAuthenticated]
 
     @Server_list_docs
     def list(self, request):

@@ -13,8 +13,8 @@ def vallidater_image_icon(image):
 
 
 def vallidater_image_file_exstension(value):
-    exstension = os.path.splitext(value.name)[1]
-    valid_extensions = ["jpg", "jpeg", "png", "gif"]
+    exstension = os.path.splitext(value.name)[1].lower()
+    valid_extensions = [".jpg", ".jpeg", ".png", ".gif"]
     if not exstension.lower() in valid_extensions:
         raise ValidationError(
             f"Invalid file type. Please upload an image file with one of the following extensions jpg, jpeg, png, gif")
