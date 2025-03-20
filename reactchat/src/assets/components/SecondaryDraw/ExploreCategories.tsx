@@ -23,6 +23,7 @@ import {
  }
  const ExploreCategories = () =>{
     const theme = useTheme();
+    const isDarkMode = theme.palette.mode === "dark"
     const { dataCRUD, error, isLoading, fetchData } = useCrud<Category>(
         [],
         "/server/category/"
@@ -66,6 +67,7 @@ import {
                height:"25px",
                display:"block",
                margin:"auto",
+               filter: isDarkMode ? "invert(100%)" : "none",
             }}/>
          </ListItemAvatar>
          </ListItemIcon>

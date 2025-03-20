@@ -12,6 +12,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExploreCategories from "../../components/SecondaryDraw/ExploreCategories";
+import AccountButton from "../../components/PrimaryAppBar/AccountButton";
 
 const PrimaryAppBar = () => {
   const [sideMenu, setSideMenu] = useState(false);
@@ -89,6 +90,8 @@ const PrimaryAppBar = () => {
             InfoChat
           </Typography>
         </Link>
+        <Box sx={{ flexGrow: 1}}></Box>
+        <AccountButton />
       </Toolbar>
     </AppBar>
   );

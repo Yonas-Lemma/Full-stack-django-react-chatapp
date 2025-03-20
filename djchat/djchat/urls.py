@@ -21,6 +21,7 @@ from django.urls import path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.routers import DefaultRouter
 from server.views import CategoryListVS, ServerListVS
+from webchat.consumer import MyConsumer
 
 router = DefaultRouter()
 router.register('api/server/select', ServerListVS)
@@ -31,6 +32,13 @@ urlpatterns = [
     path("api/doc/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/doc/schema/ui/", SpectacularSwaggerView.as_view()),
 ] + router.urls
+
+
+# url for websocket
+websocket_url_patterns = [
+    path("ws/test", MyConsumer.as_asgi()),
+]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

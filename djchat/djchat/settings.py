@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'account',
     'server',
+    'webchat',
     'rest_framework',
     'drf_spectacular',
 
