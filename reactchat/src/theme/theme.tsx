@@ -1,77 +1,69 @@
+import { createTheme, responsiveFontSizes } from "@mui/material";
 
-import { createTheme, responsiveFontSizes} from "@mui/material";
-
-
-declare module "@mui/material/styles"{
-    interface Theme {
-        PrimaryAppBar:{
-            height: number;
-        };
-        PrimaryDraw: {
-            width: number;
-            closed:number;
-        };
-        SecondaryDraw: {
-            width: number;
-        };
-    }
-    interface ThemeOptions {
-        PrimaryAppBar: {
-             height: number;
-        };
-        PrimaryDraw: {
-            width: number;
-            closed:number;
-        };
-        SecondaryDraw: {
-            width: number;
-        };
-    }
+declare module "@mui/material/styles" {
+  interface Theme {
+    primaryAppBar: {
+      height: number;
+    };
+    primaryDraw: {
+      width: number;
+      closed: number;
+    };
+    secondaryDraw: {
+      width: number;
+    };
+  }
+  interface ThemeOptions {
+    primaryAppBar: {
+      height: number;
+    };
+    primaryDraw: {
+      width: number;
+      closed: number;
+    };
+    secondaryDraw: {
+      width: number;
+    };
+  }
 }
 
-export const CreateMuiTheme = (mode: "light" | "dark") => {
-    const fontFamilies = ["IBM Plex Sans", "sans-serif"]
-    let theme = createTheme({
-        typography: {
-            fontFamily: fontFamilies.join(", "),
-            body1: {
-                fontWeight: 500,
-                letterSpacing: "-0.5px",
-              },
-            body2: {
-                fontWeight: 500,
-                fontSize: "15px",
-                letterSpacing: "-0.5px",
-              },
-            
+export const createMuiTheme = (mode: "light" | "dark") => {
+  let theme = createTheme({
+    typography: {
+      fontFamily: ["IBM Plex Sans", "sans-serif"].join(","),
+      body1: {
+        fontWeight: 500,
+        letterSpacing: "-0.5px",
+      },
+      body2: {
+        fontWeight: 500,
+        fontSize: "15px",
+        letterSpacing: "-0.5px",
+      },
+    },
+    primaryAppBar: {
+      height: 50,
+    },
+    primaryDraw: {
+      width: 240,
+      closed: 70,
+    },
+    secondaryDraw: {
+      width: 240,
+    },
+    palette: {
+      mode,
+    },
+    components: {
+      MuiAppBar: {
+        defaultProps: {
+          color: "default",
+          elevation: 0,
         },
-      
-        
-        PrimaryAppBar: {
-            height: 50,
-        },
-        PrimaryDraw:{
-            width:240,
-            closed:165,
-        },
-        SecondaryDraw: {
-            width: 240,
-         },
-         palette: {
-            mode,
-          },
-        components: {
-            MuiAppBar: {
-                defaultProps:{
-                    color: "default",
-                    elevation: 0,
-
-                },
-            },
-        },
-    });
-    theme = responsiveFontSizes(theme);
-    return theme;
+      },
+    },
+  });
+  theme = responsiveFontSizes(theme);
+  return theme;
 };
-export default CreateMuiTheme;
-
+export default createMuiTheme;

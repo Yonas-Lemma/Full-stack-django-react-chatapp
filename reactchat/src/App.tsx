@@ -1,30 +1,30 @@
-import { createBrowserRouter,Route,RouterProvider, createRoutesFromElements} from "react-router-dom";
-import Home from "./assets/pages/Home";
-import Explore from "./assets/pages/Home";
+import Home from "./pages/Home";
+import Server from "./pages/Server";
+import Explore from "./pages/Explore";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import ToggleColorMode from "./components/ToggleColorMode";
 
-import ToggleColorMode from "./assets/components/ToggleColorMode";
-import Server from "./assets/pages/Server";
-
-
-
-const routes = createRoutesFromElements(
-<Route>
-  <Route path="/" element={<Home/>} />
-  <Route path="/server" element={<Server/>} />
-  <Route path="/explore/:categoryName" element={<Explore/>} />
-
-</Route>
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+      <Route path="/" element={<Home />} />
+      <Route path="/server/:serverId/:channelId?" element={<Server />} />
+      <Route path="/explore/:categoryName" element={<Explore />} />
+    </Route>
+  )
 );
 
-
-const router = createBrowserRouter(routes);
-
-const App = ()=>{
+const App = () => {
   return (
     <ToggleColorMode>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </ToggleColorMode>
-);
+  );
 };
 
 export default App;
